@@ -1,5 +1,10 @@
 import Results from "@/components/Results";
 
+export const metadata = {
+  title: "imdb Clone",
+  description: "This is the IMDb Clone",
+};
+
 const API_KEY = process.env.API_KEY;
 
 export default async function Home({ searchParams }) {

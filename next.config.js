@@ -1,10 +1,13 @@
-/** @type {import('next').NextConfig} */
+const withPWAInit = require("next-pwa");
 
-const withPWA = require("next-pwa")({
+/** @type {import('next-pwa').PWAConfig} */
+const withPWA = withPWAInit({
   dest: "public",
-  register: true,
-  skipWaiting: true,
+  // Solution: https://github.com/shadowwalker/next-pwa/issues/424#issuecomment-1399683017
+  buildExcludes: ["app-build-manifest.json"],
 });
+
+/** @type {import('next').NextConfig} */
 
 module.exports = withPWA({
   reactStrictMode: true,
@@ -17,10 +20,10 @@ module.exports = withPWA({
 //   disable: process.env.NODE_ENV === "development",
 // });
 
-// const nextConfig = {
-//   images: {
-//     domains: ["image.tmdb.org"],
-//   },
-// };
+const nextConfig = {
+  images: {
+    domains: ["image.tmdb.org"],
+  },
+};
 
-// module.exports = withPWA({ nextConfig });
+module.exports = withPWA(nextConfig);
